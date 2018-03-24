@@ -1,0 +1,11 @@
+### STS ###
+.exe
+
+### Folders ###
+pkg/
+bin/
+.idea/
+
+### Folders ###
+server/*.exe
+client/*.exe
