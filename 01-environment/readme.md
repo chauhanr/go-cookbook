@@ -50,10 +50,10 @@ The os packages Executable() method is a good way to get the path to the executa
 ### Recipe 6 - Getting the current PID
 The pid can be easily gotten for the proces using the os.Getpid() method. if we have linux environment on which we run the executable then we can run the ps command to get the current pid details too.
 
-### Recipe 7 - Capturing Operating system signals
+### Recipe 7 - Capturing Operating system signals [Important]
 This program captures the system signals that the OS sends.
 
-### Recipe 8 - Running external processes
+### Recipe 8 - Running external processes [Important]
 The exec package in golang helps us run external commands easily. There are two ways to do it
 
 method 1
@@ -79,15 +79,17 @@ we call the **prc.Start()** that give the control back to the main routine while
 method is used to wait for the process to end and when it does the Wait() cleans all the resources it holds.
 
 
-### Recipe 9 - Retrieving child process information
+### Recipe 9 - Retrieving child process information [Important]
 The **ProcessState** of a process exec.Command() return type give all the information of the process. But the process state is
 only available once the process has completed it job and not before. However you can get the pid for the process before the process has completed its job.
 
 
-### Recipe 10 - Reading and writing to child processes
+### Recipe 11 - Reading and writing to child processes [Important]
 This recipe is all about spawning a new process and capturing the std input and output of the procedure and then sending information to and from the process.
 In the example we have two process one that is writing to std in and the other which is reading from it.
 
-
-
+### Recipe 12 - File config with functional options [Important]
+The key part of this pattern is to use functions as return types and pass functions is a particular type to config loading functionality
+this makes loading configuration information from various sources easy to accomplish at one place without having diverse code.
+This is an elegant solution that can be used in situations where a similar functionality has to be carried out on different kind of situations.
 
