@@ -77,6 +77,39 @@ This is particularly useful when you are trying to extract information from a te
 ### Recipe 8 Decoding and encoding string to unicode.
 There is an inbuilt packages in golang that help with unicode support - golang.org/x/text/encoding/charmap
 
+### Recipe 10 Parsing comma separated data [Important]
+The encoding/csv package in golang has good library of functions that helps read csv files very easily. Also there are ways in which we can change the delimiter
+```
+    file, e := os.Open("/path/to/csv")
+    reader := csv.Read(file)
+    reader.Comma = ';' // changes the delimiter from , to ;
+    reader.Comment  = '#' // signifies that the commented record are marked by #
+    reader.FieldsPerRecord = 3 // if a positive number is set then golang will check to see if the record has the correct number of records or fields.
+
+    record, err := reader.Read()
+    // this method will read one record at a time. returns an EOF error at the end of the file.
+
+```
+
+
+### Recipe 11 Managing whitespaces in strings.
+There are few ways to manage the whitespaces.
+* strings.TrimSpace(str) - this will trimg spaces from the front and back of the string.
+* regex package can be used to trim spaces
+
+```
+    r := regexp.MustCompile("\\s+")
+    replace := r.ReplaceAllString(stringToTrim," ")
+    //this will replace whitespace with a single space.
+```
+
+### Recipe 12 Indenting a text document
+This can be done using Sprintf function of fmt package
+
+```
+    fmt.Sprintf("%15s", text)  // this will pad the test to the left by 15 spaces.
+    // way to find out if we have a white space is to use the unicode.IsSpace(rune) function
+```
 
 
 
