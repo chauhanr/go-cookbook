@@ -7,5 +7,4 @@ bin/
 .idea/
 
 ### Folders ###
-server/*.exe
-client/*.exe
+01-environment/recipe11/test_*.log
