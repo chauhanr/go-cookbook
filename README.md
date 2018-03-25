@@ -4,4 +4,4 @@ There are various sections to the cook book each one is places in separate folde
 
 * [Interacting with the Environment](01-environment/readme.md)
 * [Strings and Things](02-strings/readme.md)
-* Dealing with Numbers
+* [Dealing with Numbers](03-numbers/readme.md)
