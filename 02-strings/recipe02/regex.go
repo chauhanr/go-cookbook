@@ -1,20 +1,15 @@
 package main
 
 import (
-	"strings"
 	"fmt"
+	"regexp"
 )
 
-const refStringFunc = "Mary*had,a%little/lamb"
+const refStringRegex = "Mary*had,a%little/lamb"
 
 func main(){
 
-	// define the split function that determines if we have a delimiter
-	splitFunc := func(r rune) bool{
-		return strings.ContainsRune("%*_,/", r)
-	}
-
-	words := strings.FieldsFunc(refStringFunc, splitFunc)
+	words := regexp.MustCompile("[*,%_/]{1}").Split(refStringRegex, -1)
 	for idx, word := range words{
 		fmt.Printf("Word %d is: %s\n",idx, word)
 	}
