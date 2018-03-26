@@ -82,3 +82,11 @@ we need to use math/big package. Generally if we need to use a very high precisi
         // floating point represented as scientific notation
         fmt.Printf("%e \n", floatNum)
 ```
+
+### Recipe 6 Converting the number between various bases
+strconv package is for this very purpose. The strconv has a number of functions that can be used to changes bases for the numbers.
+
+### Recipe 8 Generating random numbers
+The most popular package for this is the math/rand but if we use a particular seed the number could repeat. In order to get
+cryptographically random number we need to use the crypto/rand
+
