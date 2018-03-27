@@ -90,3 +90,24 @@ strconv package is for this very purpose. The strconv has a number of functions 
 The most popular package for this is the math/rand but if we use a particular seed the number could repeat. In order to get
 cryptographically random number we need to use the crypto/rand
 
+### Recipe 9 Dealing with Complex numbers
+The complex numbers can be dealt with math.cmplx package. This supports a lot of operations
+* addition/substraction using +/- operators
+* product and division using */ operators
+* Conjugate using the cmplx.Conj()
+* Cosine using the cmplx.Cos()
+
+### Recipe 11 Logrithms
+math.LogX package is very useful in this regard as all the popular bases are present
+if however there is an unusual base that needs to be calculated then we use the formula
+
+```
+  logx(y) = ln(y)/ln(x)
+```
+
+### Recipe 12 Hashing and checksums
+Golang standard library crypto has various checkum implementation functions like:
+1. md5,
+2. sha-1
+3. sha-256 etc.
+
