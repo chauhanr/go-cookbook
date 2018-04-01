@@ -123,3 +123,14 @@ We can filter files and choose them in selective way by using the following api:
 * filepath.Walk(path, func(){}) the function is the filtering function that decides whether the folder/files
 is choosen or not.
 
+### Recipe 10 - Finding the Home directory
+This can be done using the os/users package and the function Current() to get the user and then look for HomeDir
+
+```
+usr, err := user.Current()
+if err != nil{
+    log.Fatal(err)
+}
+fmt.Println("The users home directory is: ", usr.HomeDir)
+```
+
