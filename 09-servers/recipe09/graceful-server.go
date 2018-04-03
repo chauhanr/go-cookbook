@@ -34,7 +34,5 @@ func main(){
 	srv.Shutdown(ctx)
 	<- ctx.Done()
 	cancel()
-
 	log.Println("Server gracefully shutdown")
-
 }
