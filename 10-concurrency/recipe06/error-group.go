@@ -29,7 +29,6 @@ func main(){
 			}(row)
 		})
 	}
-
 	if err := g.Wait(); err != nil{
 		fmt.Println("Error while waiting: "+err.Error())
 	}

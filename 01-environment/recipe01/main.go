@@ -11,5 +11,5 @@ The binary was build by go version: %s
 `
 
 func main(){
-	log.Printf(info, "recipe01", runtime.Version())
+	log.Printf(info, "recipe03", runtime.Version())
 }
