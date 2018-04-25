@@ -18,7 +18,7 @@ func debug(msg string){
 func main(){
 	opA := flag.Bool("a", false, "this lists all the search - all")
 	opS := flag.Bool("s", false, "s")
-	Debug := flag.Bool("x", false, "debug the command")
+	Debug := flag.Bool("v", false, "verbose logging")
 
 	flag.Parse()
 	flags := flag.Args()
@@ -28,7 +28,17 @@ func main(){
 	}
 	DEBUG = *Debug
 
-	file := flags[0]
+	for _, file := range flags{
+		foundIt := whichFunc(file, opS, opA)
+
+		if foundIt == false{
+			fmt.Printf("Could not find executable %s in path\n", file)
+		}
+	}
+
+}
+
+func whichFunc(file string, opS, opA *bool) bool{
 	foundIt := false
 
 	path := os.Getenv("PATH")
@@ -53,7 +63,7 @@ func main(){
 						fmt.Printf("%s : %s\n",fullPath, fileinfo.Mode().String())
 					}else {
 						fmt.Println(fullPath)
-						os.Exit(0)
+						return foundIt
 					}
 				}
 			}
@@ -61,7 +71,5 @@ func main(){
 			debug(fmt.Sprintf("Could not find file %s", fullPath))
 		}
 	}
-	if foundIt == false{
-		os.Exit(1)
-	}
+	return foundIt
 }

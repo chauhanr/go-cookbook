@@ -1,0 +1,2 @@
+Hello there is content is part of the source file "source.txt" and will be copied to the 
+destination file "destination.txt".
