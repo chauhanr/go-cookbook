@@ -68,10 +68,9 @@ func main(){
 func countWord(line string) (int, int){
 	r := regexp.MustCompile("[^\\s]+")
 	wCount := 0
-	cCount := 0
+	cCount := len(line)
 
-	for _,word := range r.FindAllString(line,-1){
-		cCount += len(word)
+	for range r.FindAllString(line,-1){
 		wCount++
 	}
 	return wCount, cCount
