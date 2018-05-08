@@ -14,8 +14,15 @@ func main(){
 	go func(){
 		for {
 			sig := <-sigs
-			fmt.Println(sig)
-			handleSignal(sig)
+			switch sig{
+				case os.Interrupt:
+					handleSignal(sig)
+				case syscall.SIGTERM:
+					handleSignal(sig)
+				case syscall.SIGHUP:
+					fmt.Println("Got: ", sig)
+					os.Exit(-1)
+			}
 		}
 	}()
 	for {
