@@ -1,27 +1,27 @@
 package main
 
 import (
-	"os"
 	"container/list"
+				"fmt"
 	"io/ioutil"
 	"log"
 	"path/filepath"
-	"fmt"
+	"os"
 )
 
-type FileNode struct{
+type FN struct{
 	FullPath string
 	Info os.FileInfo
 }
 
-func insertSortedSize(fileList *list.List, fileNode FileNode){
+func insertSortedModTime(fileList *list.List, fileNode FN){
 	if fileList.Len() == 0 {
 		// as list is empty just return after insert
 		fileList.PushFront(fileNode)
 		return
 	}
 	for element := fileList.Front(); element != nil; element = element.Next(){
-		if fileNode.Info.Size() < element.Value.(FileNode).Info.Size(){
+		if fileNode.Info.ModTime().Before(element.Value.(FN).Info.ModTime()) {
 			fileList.InsertBefore(fileNode, element)
 			return
 		}
@@ -29,7 +29,8 @@ func insertSortedSize(fileList *list.List, fileNode FileNode){
 	fileList.PushBack(fileNode)
 }
 
-func getFilesInDirectoryBySize(fileList *list.List, path string){
+
+func GetFilesInDirectoryBySize(fileList *list.List, path string){
 	dirFiles, err := ioutil.ReadDir(path)
 	if err != nil{
 		log.Println("Error reading directory: "+ err.Error())
@@ -38,19 +39,18 @@ func getFilesInDirectoryBySize(fileList *list.List, path string){
 	for _, dirFile := range dirFiles{
 		fullPath := filepath.Join(path, dirFile.Name())
 		if dirFile.IsDir(){
-			getFilesInDirectoryBySize(fileList, fullPath)
+			GetFilesInDirectoryBySize(fileList, fullPath)
 		}else if dirFile.Mode().IsRegular(){
-			insertSortedSize(fileList, FileNode{FullPath: fullPath, Info: dirFile})
+			insertSortedModTime(fileList, FN{FullPath: fullPath, Info: dirFile})
 		}
 	}
 }
 
-
 func main(){
 	fileList := list.New()
-	getFilesInDirectoryBySize(fileList, "/home")
+	GetFilesInDirectoryBySize(fileList, "/home/vagrant/go-projects/src/go-cookbook")
 	for element := fileList.Front(); element != nil; element = element.Next(){
-		fmt.Printf("%d ", element.Value.(FileNode).Info.Size())
-		fmt.Printf("%s\n", element.Value.(FileNode).FullPath)
+		fmt.Print(element.Value.(FN).Info.ModTime())
+		fmt.Printf(" %s\n", element.Value.(FN).FullPath)
 	}
 }
