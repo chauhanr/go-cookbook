@@ -22,6 +22,13 @@ func main(){
 	if err != nil{
 		log.Fatal(err)
 	}
+	defer handle.Close()
+	//var filter string = "tcp and port 8080"
+	//err = handle.SetBPFFilter(filter)
+	if err != nil{
+		log.Fatal(err.Error())
+	}
+	//fmt.Printf("Capturing filter criteria : %s\n", filter)
 
 	packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
 	for packet := range packetSource.Packets() {
