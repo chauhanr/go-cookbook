@@ -74,8 +74,17 @@ func handleConnection(clientConn net.Conn){
          // handle the message and client connection using socket reader
          message, err := socketReader.ReadString("\n")
          // work with message
-         ... 
+         ...
    }
 }
 
 ```
+
+## Go Crypto package
+
+The go crypto package can help perform all the functionality above.
+1. use the x509 package to generate asymmetric keys. This package also allows for encoding and saving the certs in PEM files.
+2. use the tls package to generate TLS clients and servers.
+3. Use the md5, sha1, sha256, sha512 packages to hash values.
+4. Use the rsa package to digitally sign message and verify if the message signed properly.
+
