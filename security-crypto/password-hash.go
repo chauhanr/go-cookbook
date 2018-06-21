@@ -8,6 +8,7 @@ import (
 	"crypto/sha256"
 	"io"
 	"encoding/hex"
+	"crypto/rand"
 )
 
 func printUsageP(){
@@ -24,7 +25,7 @@ func checkArgsP() string{
 }
 
 /* keeping a secret key for HMAC
-   HMAC stands for - hash-based message authentication code - this adds additional secret key into hashing algorithm. 
+   HMAC stands for - hash-based message authentication code - this adds additional secret key into hashing algorithm.
 */
 var secretKey = "neictr98y85klfgneghre"
 
